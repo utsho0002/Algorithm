@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//code for merge
+void merge(int arr[],int n, int s, int mid, int e){
+   int temp[n];
+   int i=s, j=mid+1;
+   int k=s;
+   while(i<=mid && j<=e){
+      if(arr[i]<arr[j]){
+         temp[k]=arr[i];
+         i++; k++;
+      }
+      else{
+         temp[k]=arr[j];
+         j++; k++;
+      }
+   }
+   while(i<=mid){
+      temp[k]=arr[i];
+      i++; k++;
+   }
+   while(j<=e){
+      temp[k]=arr[j];
+      j++; k++;
+   }
+   for(int p=s; p<=e; p++){
+      arr[p]=temp[p];
+   }
+}
+
+//code divide the array
+void merge_sort(int arr[], int n, int s, int e){
+   if(s<e){
+      int mid=(s+e)/2;
+      merge_sort(arr,n,s,mid);
+      merge_sort(arr,n,mid+1,e);
+      merge(arr,n,s,mid,e);
+   }
+}
+
+int main(){
+   //taking input
+   int n;
+   cin>>n;
+   int arr[n];
+   for(int i=0; i<n; i++){
+      cin>>arr[i];
+   }
+   int s=0, e=n-1;
+  merge_sort(arr,n,s,e);
+
+   // print the array
+   for(int i=0; i<n; i++){
+      cout<<arr[i]<<" ";
+   }
+}
