@@ -13,11 +13,11 @@ int main() {
                 k[i][w]=0;
             }
             else if(w<weight[i-1]){    //ekhane weight[i] na hoye i-1 hobe cz, i==0 ta amra skip koray, weight array er 0th index ta miss kore jabo, thats why.
-                                        //na bujhle bolio....
+                                        //na bujhle bolio.... 
                 k[i][w]=k[i-1][w];
             }
             else{
-                k[i][w]=max(k[i-1][w],k[i-1][w-weight[i-1]]+profit[i-1]);
+                k[i][w]=max(k[i-1][w],k[i-1][w-weight[i-1]]+profit[i-1]);   //same profit[i] er bodole profit[i-1]  hobe
             }
         }
     }
