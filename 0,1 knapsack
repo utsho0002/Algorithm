@@ -17,7 +17,7 @@ int main() {
                 k[i][w]=k[i-1][w];
             }
             else{
-                k[i][w]=max(k[i-1][w],k[i-1][w-weight[i-1]]+profit[i]);
+                k[i][w]=max(k[i-1][w],k[i-1][w-weight[i-1]]+profit[i-1]);
             }
         }
     }
