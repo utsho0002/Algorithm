@@ -1,15 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
-vector<int>adj[1000000];
+int adj[10000][10000];
 int vis[1000000];
 
-void dfs(int s, vector<int>&ans){
+void dfs(int s,int n){
    vis[s]=1;
-   ans.push_back(s);
-   for(int i=0; i<adj[s].size(); i++){
-      int v=adj[s][i];
-      if(vis[v]==0){
-         dfs(v,ans);
+   cout<<s<<" ";
+   for(int v=1; v<=n; v++){
+      if(vis[v]==0 && adj[s][v]==1){
+         dfs(v,n);
       }
    }
 }
@@ -19,12 +18,9 @@ int main(){
    for(int i=0; i<e; i++){
       int u,v;
       cin>>u>>v;
-      adj[u].push_back(v);
-      adj[v].push_back(u);
+      adj[u][v]=1;
+      adj[v][u]=1;
    }
-   vector<int>ans;
-   dfs(1,ans);
-   for(int i=0; i<ans.size(); i++){
-      cout<<ans[i]<<" ";
-   }
+
+   dfs(1,n); 
 }
