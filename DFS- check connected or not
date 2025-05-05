@@ -9,6 +9,7 @@ void dfs(int s, int n) {
     for (int v = 1; v <= n; v++) {
         if (adj[s][v] == 1 && vis[v] == 0) {
             dfs(v, n);
+            vis[v]=1;
         }
     }
 }
