@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+int adj[1000][1000];
+int vis[1000];
+
+void dfs(int s, int n) {
+    vis[s] = 1;
+    for (int v = 1; v <= n; v++) {
+        if (adj[s][v] == 1 && vis[v] == 0) {
+            dfs(v, n);
+        }
+    }
+}
+
+int main() {
+    int n, e;
+    cin >> n >> e; // number of nodes and edges
+
+    // Input edges
+    for (int i = 0; i < e; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u][v] = 1;
+        adj[v][u] = 1; // undirected graph
+    }
+
+    dfs(1, n); // start DFS from node 1
+
+    bool connected = true;
+    for (int i = 1; i <= n; i++) {
+        if (vis[i] == 0) {
+            connected = false;
+            break;
+        }
+    }
+
+    if (connected==true)
+        cout << "Connected";
+    else
+        cout << "Not Connected";
+
+    return 0;
+}
