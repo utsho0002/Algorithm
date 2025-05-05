@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int adj[1000][1000];
+int vis[1000];
+void bfs(int s, int n){
+    queue<int>q;
+    q.push(s);
+    vis[s]=1;
+    while(!q.empty()){
+        int u=q.front();
+        q.pop();
+        for(int v=1; v<=n; v++){
+            if(adj[u][v]==1 && vis[v]==0){
+                q.push(v);
+                vis[v]=1;
+            }
+        }
+    }
+}
+int main(){
+    int n,e;
+    cin>>n>>e;
+    for(int i=0; i<e; i++){
+        int u,v;
+        cin>>u>>v;
+        adj[u][v]=1;
+        adj[v][u]=1;
+    }
+    bfs(1,n);
+
+
+// extra add ---------
+
+
+    bool check=true;
+    for(int i=1; i<=n; i++){
+        if(vis[i]==0){
+            check=false;
+            break;
+        }
+    }
+    if(check==true){
+        cout<<"Connected";
+    }
+    else{
+        cout<<"Not Connected";
+    }
+}
